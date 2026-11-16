@@ -1,0 +1,27 @@
+@model IEnumerable<MediCare.Data.Entities.Doctor>
+
+@{
+	ViewData["Title"] = "Patient Dashboard";
+}
+
+<h1>Welcome to your Patient Dashboard</h1>
+
+<div class="row">
+    @foreach (var doctor in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">Dr. @doctor.FirstName @doctor.LastName</h5>
+                    <p class="card-text">
+                        <strong>Specialization:</strong> @(doctor.Specialization != null ? doctor.Specialization.Name : "General")
+                    </p>
+                    <!-- This is the button Copilot skipped -->
+                    <a asp-controller="Appointment" asp-action="Book" asp-route-doctorId="@doctor.Id" class="btn btn-primary w-100">
+                        Book Appointment
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Book Appointment";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4 text-primary">Book Your Appointment</h2>
+
+            <div class="card shadow-sm p-4">
+
+                <!-- NEW: ERROR MESSAGE ALERT -->
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger fw-bold" role="alert">
+                        @TempData["ErrorMessage"]
+                    </div>
+                }
+
+                <form asp-controller="Appointment" asp-action="Book" method="post">
+                    <!-- Hidden field keeps track of the Doctor -->
+                    <input type="hidden" name="doctorId" value="@ViewBag.DoctorId" />
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Select Date and Time</label>
+                        <input type="datetime-local" name="appointmentDateTime" class="form-control" required />
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Reason for Visit / Notes</label>
+                        <textarea name="notes" class="form-control" rows="3" placeholder="E.g., Routine checkup, back pain..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 mb-2">Confirm Booking</button>
+                    <a asp-controller="Dashboard" asp-action="Patient" class="btn btn-outline-secondary w-100">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

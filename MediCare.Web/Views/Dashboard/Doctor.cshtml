@@ -1,0 +1,27 @@
+@model IEnumerable<MediCare.Data.Entities.Appointment>
+
+@{
+	ViewData["Title"] = "Doctor Dashboard";
+}
+
+<h1>Welcome to your Doctor Dashboard</h1>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>Patient Name</th>
+			<th>Notes</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var appointment in Model)
+		{
+			<tr>
+				<td>@appointment.AppointmentDateTime</td>
+				<td>@appointment.Patient?.FirstName @appointment.Patient?.LastName</td>
+				<td>@appointment.Notes</td>
+			</tr>
+		}
+	</tbody>
+</table>
